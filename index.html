@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioteknologi IPA Kelas 9 | Media Pembelajaran Interaktif</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        bio: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        },
+                        tech: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Kustomisasi Animasi & Efek Visual Halus */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        .animate-float-delay {
+            animation: floatSlow 5s ease-in-out 1.5s infinite;
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        .animate-spin-slow {
+            animation: spinSlow 25s linear infinite;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-200 selection:text-emerald-900">
+
+    <!-- ==================== HEADER & NAVIGASI STICKY ==================== -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 shadow-sm">
+        <!-- Indikator Progres Belajar -->
+        <div class="w-full h-1.5 bg-slate-200 overflow-hidden">
+            <div id="reading-progress" class="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-600 transition-all duration-150" style="width: 0%;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Judul -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+                        <!-- Ikon DNA Mini -->
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 15c6.667-6 13.333 0 20-6"/>
+                            <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/>
+                            <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/>
+                            <path d="m17 6-2.5-2.5"/>
+                            <path d="m14 8-1-1"/>
+                            <path d="m7 18 2.5 2.5"/>
+                            <path d="m3.5 14.5.5.5"/>
+                            <path d="m20 9 .5.5"/>
+                            <path d="m6.5 12.5 1 1"/>
+                            <path d="m16.5 10.5 1 1"/>
+                            <path d="m10 16 1.5 1.5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-lg sm:text-xl bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 to-blue-700 block leading-tight">
+                            Bioteknologi IPA
+                        </span>
+                        <span class="text-xs font-semibold text-slate-500 tracking-wide uppercase">Kelas IX SMP/MTs</span>
+                    </div>
+                </a>
+
+                <!-- Menu Navigasi Desktop -->
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+                    <a href="#pengertian" class="nav-link px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition-colors">Pengertian</a>
+                    <a href="#konvensional" class="nav-link px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition-colors">Konvensional</a>
+                    <a href="#modern" class="nav-link px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-blue-700 hover:bg-blue-50 transition-colors">Modern</a>
+                    <a href="#dampak" class="nav-link px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-amber-700 hover:bg-amber-50 transition-colors">Dampak</a>
+                    <a href="#kuis-hots" class="ml-2 px-4 py-2 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-sm hover:shadow transition-all flex items-center gap-1.5">
+                        <span>Kuis HOTS</span>
+                        <span class="bg-white/20 text-xs px-1.5 py-0.5 rounded-md">5 Soal</span>
+                    </a>
+                </nav>
+
+                <!-- Tombol Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Dropdown Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1.5 shadow-lg">
+            <a href="#pengertian" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">1. Pengertian Bioteknologi</a>
+            <a href="#konvensional" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">2. Bioteknologi Konvensional</a>
+            <a href="#modern" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-700">3. Bioteknologi Modern</a>
+            <a href="#dampak" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-700">4. Dampak Bioteknologi</a>
+            <a href="#kuis-hots" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-bold text-center text-white bg-gradient-to-r from-emerald-600 to-teal-600">5. Latihan Kuis HOTS</a>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-900 text-white py-14 sm:py-20 lg:py-24">
+        <!-- Dekorasi Latar Belakang -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-25">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-emerald-400 blur-3xl"></div>
+            <div class="absolute top-1/2 -right-24 w-96 h-96 rounded-full bg-blue-500 blur-3xl"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+                <!-- Kolom Kiri: Teks Pengantar -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs sm:text-sm font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        Modul Interaktif Kurikulum Merdeka • IPA Kelas 9
+                    </div>
+                    
+                    <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight tracking-tight">
+                        Menjelajahi Dunia <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300">Bioteknologi</span> Masa Kini
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg text-slate-200/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Pelajari bagaimana manusia memanfaatkan mikroorganisme, sel, dan rekayasa genetika—dari pembuatan tempe tradisional hingga produksi insulin sintetis dan tanaman transgenik.
+                    </p>
+
+                    <!-- Tujuan Pembelajaran Singkat -->
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 text-left max-w-2xl mx-auto lg:mx-0">
+                        <p class="text-xs font-bold uppercase tracking-wider text-emerald-300 mb-2.5 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Target Kompetensi Belajar:
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-100">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold">✓</span> Memahami prinsip dasar bioteknologi
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold">✓</span> Membedakan konvensional & modern
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold">✓</span> Mengidentifikasi agen hayati & produknya
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold">✓</span> Menganalisis dampak & soal HOTS
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+                        <a href="#pengertian" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-display font-bold text-base shadow-lg shadow-emerald-500/30 transition-all flex items-center justify-center gap-2">
+                            <span>Mulai Belajar Sekarang</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                        </a>
+                        <a href="#kuis-hots" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-base transition-all text-center">
+                            Langsung ke Kuis HOTS
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Ilustrasi SVG Laboratorium Bioteknologi & DNA -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md animate-float">
+                        <svg viewBox="0 0 420 380" class="w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="bgCircle" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.3"/>
+                                </linearGradient>
+                                <linearGradient id="flaskLiquid" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#34d399"/>
+                                    <stop offset="100%" stop-color="#059669"/>
+                                </linearGradient>
+                                <linearGradient id="dnaBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#60a5fa"/>
+                                    <stop offset="100%" stop-color="#38bdf8"/>
+                                </linearGradient>
+                                <linearGradient id="dnaEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#34d399"/>
+                                    <stop offset="100%" stop-color="#a7f3d0"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Lingkaran Latar -->
+                            <circle cx="210" cy="190" r="165" fill="url(#bgCircle)" stroke="#34d399" stroke-width="1.5" stroke-dasharray="8 6"/>
+                            <circle cx="210" cy="190" r="130" fill="#0f172a" fill-opacity="0.55" stroke="#38bdf8" stroke-width="1"/>
+
+                            <!-- Heliks DNA Ganda (Kiri) -->
+                            <g transform="translate(65, 55)">
+                                <!-- Rangka DNA -->
+                                <path d="M20,10 C65,45 -15,85 30,120 C75,155 -15,195 30,230 C55,250 40,265 25,275" fill="none" stroke="url(#dnaBlue)" stroke-width="6" stroke-linecap="round"/>
+                                <path d="M45,10 C0,45 80,85 35,120 C-10,155 80,195 35,230 C10,250 25,265 40,275" fill="none" stroke="url(#dnaEmerald)" stroke-width="6" stroke-linecap="round"/>
+                                <!-- Pasangan Basa Nitrogen -->
+                                <line x1="25" y1="25" x2="40" y2="25" stroke="#fde047" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="38" y1="45" x2="27" y2="45" stroke="#f472b6" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="15" y1="75" x2="50" y2="75" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="15" y1="98" x2="50" y2="98" stroke="#fde047" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="38" y1="135" x2="27" y2="135" stroke="#f472b6" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="15" y1="165" x2="50" y2="165" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="15" y1="190" x2="50" y2="190" stroke="#fde047" stroke-width="3.5" stroke-linecap="round"/>
+                                <line x1="36" y1="220" x2="28" y2="220" stroke="#f472b6" stroke-width="3.5" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Labu Erlenmeyer & Kultur Mikroba (Tengah-Kanan) -->
+                            <g transform="translate(155, 85)">
+                                <!-- Badan Labu -->
+                                <path d="M65,20 L95,20 L95,65 L145,175 C152,190 142,208 125,208 L35,208 C18,208 8,190 15,175 L65,65 Z" fill="#ffffff" fill-opacity="0.14" stroke="#e2e8f0" stroke-width="4" stroke-linejoin="round"/>
+                                <!-- Cairan Kultur Hijau -->
+                                <path d="M42,122 L118,122 L141,173 C146,185 138,200 124,200 L36,200 C22,200 14,185 19,173 Z" fill="url(#flaskLiquid)"/>
+                                <!-- Mulut Labu -->
+                                <rect x="60" y="14" width="40" height="8" rx="4" fill="#cbd5e1"/>
+                                <!-- Gelembung Fermentasi -->
+                                <circle cx="65" cy="175" r="7" fill="#a7f3d0" opacity="0.85"/>
+                                <circle cx="95" cy="162" r="9" fill="#d1fae5" opacity="0.8"/>
+                                <circle cx="78" cy="142" r="5" fill="#ffffff" opacity="0.9"/>
+                                <circle cx="88" cy="100" r="4" fill="#6ee7b7" opacity="0.7"/>
+                                <circle cx="74" cy="80" r="3" fill="#6ee7b7" opacity="0.6"/>
+                                <!-- Skala Ukur -->
+                                <line x1="65" y1="145" x2="78" y2="145" stroke="#064e3b" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="60" y1="165" x2="75" y2="165" stroke="#064e3b" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="55" y1="185" x2="72" y2="185" stroke="#064e3b" stroke-width="2" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Cawan Petri & Koloni Bakteri (Kanan Bawah) -->
+                            <g transform="translate(275, 235)">
+                                <ellipse cx="55" cy="45" rx="52" ry="22" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+                                <ellipse cx="55" cy="39" rx="48" ry="19" fill="#0ea5e9" fill-opacity="0.25" stroke="#bae6fd" stroke-width="2"/>
+                                <!-- Koloni Mikroba -->
+                                <circle cx="38" cy="38" r="5" fill="#fde047"/>
+                                <circle cx="58" cy="34" r="6" fill="#34d399"/>
+                                <circle cx="72" cy="42" r="4.5" fill="#f472b6"/>
+                                <circle cx="48" cy="46" r="4" fill="#a78bfa"/>
+                                <circle cx="64" cy="47" r="3.5" fill="#fde047"/>
+                            </g>
+
+                            <!-- Daun Tunas Kultur Jaringan (Atas Kanan) -->
+                            <g transform="translate(295, 65)">
+                                <circle cx="38" cy="38" r="34" fill="#065f46" stroke="#34d399" stroke-width="2.5"/>
+                                <path d="M38,56 L38,30" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M38,40 C22,38 18,24 28,20 C36,17 38,30 38,40 Z" fill="#34d399"/>
+                                <path d="M38,34 C54,32 58,18 48,14 C40,11 38,24 38,34 Z" fill="#6ee7b7"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 1: PENGERTIAN BIOTEKNOLOGI ==================== -->
+    <section id="pengertian" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-16">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
+                Bagian 01 • Konsep Dasar
+            </span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mb-4">
+                Apa Itu Bioteknologi?
+            </h2>
+            <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                Kata <strong>bioteknologi</strong> berasal dari gabungan kata <em>bios</em> (hidup), <em>teknos</em> (penerapan/alat), dan <em>logos</em> (ilmu).
+            </p>
+        </div>
+
+        <!-- Kotak Definisi Utama -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200/90 mb-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-emerald-50 rounded-bl-full -z-0"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex-shrink-0 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                    <!-- SVG Mikroskop & Sel -->
+                    <svg class="w-16 h-16 text-white" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="24" stroke="white" stroke-width="2.5" stroke-dasharray="4 3"/>
+                        <path d="M24 22C24 19.7909 25.7909 18 28 18H36C38.2091 18 40 19.7909 40 22V28C40 30.2091 38.2091 32 36 32H28C25.7909 32 24 30.2091 24 28V22Z" fill="#a7f3d0"/>
+                        <circle cx="30" cy="24" r="2" fill="#064e3b"/>
+                        <circle cx="35" cy="26" r="1.5" fill="#064e3b"/>
+                        <path d="M20 44H44" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                        <path d="M32 32V44" stroke="white" stroke-width="3.5"/>
+                        <path d="M25 38H39" stroke="#fde047" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-xl sm:text-2xl text-slate-900 mb-2">Definisi Bioteknologi</h3>
+                    <p class="text-slate-700 text-base sm:text-lg leading-relaxed">
+                        <strong>Bioteknologi</strong> adalah cabang ilmu biologi yang mempelajari pemanfaatan prinsip-prinsip ilmiah dengan menggunakan <strong>makhluk hidup (agen biologis)</strong> maupun bagian-bagiannya (seperti enzim dan DNA) untuk menghasilkan <strong>barang dan jasa</strong> yang bermanfaat bagi kesejahteraan manusia.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Pilar Utama Bioteknologi -->
+        <h3 class="font-display font-bold text-xl sm:text-2xl text-center text-slate-800 mb-8">
+            3 Pilar Utama dalam Proses Bioteknologi
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Pilar 1: Agen Biologis -->
+            <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-24 h-24 mb-5">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <circle cx="50" cy="50" r="45" fill="#ecfdf5"/>
+                        <!-- Bakteri Kapsul -->
+                        <rect x="24" y="36" width="52" height="28" rx="14" fill="#10b981" stroke="#047857" stroke-width="2.5"/>
+                        <circle cx="38" cy="48" r="3" fill="#ffffff"/>
+                        <circle cx="52" cy="52" r="4" fill="#a7f3d0"/>
+                        <circle cx="64" cy="47" r="2.5" fill="#ffffff"/>
+                        <!-- Flagela -->
+                        <path d="M76 50 Q 86 42, 92 50 T 98 48" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M24 44 Q 14 38, 8 44" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M24 56 Q 14 62, 8 56" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-2">Pilar 1 • Input</span>
+                <h4 class="font-display font-bold text-lg text-slate-900 mb-2">Agen Biologis</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Melibatkan organisme hidup seperti <strong>bakteri, jamur (khamir & kapang), virus</strong>, sel tumbuhan/hewan, serta komponen seluler seperti <strong>enzim dan gen (DNA)</strong>.
+                </p>
+            </div>
+
+            <!-- Pilar 2: Proses / Rekayasa -->
+            <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-24 h-24 mb-5">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <circle cx="50" cy="50" r="45" fill="#eff6ff"/>
+                        <!-- Roda Gigi & Tabung Reaksi -->
+                        <circle cx="50" cy="50" r="24" fill="none" stroke="#3b82f6" stroke-width="5" stroke-dasharray="8 5"/>
+                        <rect x="42" y="24" width="16" height="48" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5"/>
+                        <path d="M43 48 H57 V64 C57 68 54 71 50 71 C46 71 43 68 43 64 Z" fill="#3b82f6"/>
+                        <circle cx="48" cy="56" r="2" fill="#ffffff"/>
+                        <circle cx="53" cy="62" r="2.5" fill="#93c5fd"/>
+                    </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold mb-2">Pilar 2 • Proses</span>
+                <h4 class="font-display font-bold text-lg text-slate-900 mb-2">Proses & Rekayasa</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Penerapan prinsip ilmu pengetahuan dan teknologi melalui <strong>fermentasi terkendali</strong>, kultur jaringan, hingga <strong>rekayasa genetika</strong> di laboratorium.
+                </p>
+            </div>
+
+            <!-- Pilar 3: Produk & Jasa -->
+            <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm card-hover flex flex-col items-center text-center">
+                <div class="w-24 h-24 mb-5">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <circle cx="50" cy="50" r="45" fill="#fef3c7"/>
+                        <!-- Roti / Pangan & Kapsul Obat -->
+                        <path d="M24 56 C24 42, 60 42, 60 56 L60 66 C60 69, 57 71, 54 71 L30 71 C27 71, 24 69, 24 66 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
+                        <path d="M34 48 L38 54 M44 47 L47 54" stroke="#fef3c7" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Kapsul Kesehatan -->
+                        <g transform="translate(55, 28) rotate(35)">
+                            <rect x="0" y="0" width="28" height="13" rx="6.5" fill="#10b981" stroke="#065f46" stroke-width="2"/>
+                            <path d="M14 0 H21.5 A6.5 6.5 0 0 1 21.5 13 H14 Z" fill="#ffffff"/>
+                        </g>
+                    </svg>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold mb-2">Pilar 3 • Output</span>
+                <h4 class="font-display font-bold text-lg text-slate-900 mb-2">Produk & Jasa</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Menghasilkan <strong>produk pangan bergizi</strong> (tempe, yoghurt), <strong>obat-obatan</strong> (antibiotik, insulin), bibit unggul, serta <strong>jasa pengolahan limbah</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 2: BIOTEKNOLOGI KONVENSIONAL ==================== -->
+    <section id="konvensional" class="py-16 sm:py-24 bg-gradient-to-b from-amber-50/70 via-white to-slate-50 border-y border-slate-200/80 scroll-mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+                <div class="max-w-2xl">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider mb-3">
+                        Bagian 02 • Tradisional & Fermentasi
+                    </span>
+                    <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mb-3">
+                        Bioteknologi Konvensional
+                    </h2>
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                        Bioteknologi yang memanfaatkan mikroorganisme secara langsung dan utuh melalui proses <strong>fermentasi</strong> untuk mengubah sifat bahan pangan tanpa rekayasa genetika.
+                    </p>
+                </div>
+
+                <!-- Ciri-ciri Utama -->
+                <div class="bg-white rounded-2xl p-4 sm:p-5 border border-amber-200 shadow-sm lg:max-w-md">
+                    <h3 class="font-display font-bold text-sm text-amber-900 uppercase tracking-wide mb-2.5 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Ciri-Ciri Utama:
+                    </h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700">
+                        <div class="bg-amber-50/80 px-3 py-2 rounded-xl font-medium">✓ Alat sederhana</div>
+                        <div class="bg-amber-50/80 px-3 py-2 rounded-xl font-medium">✓ Biaya relatif murah</div>
+                        <div class="bg-amber-50/80 px-3 py-2 rounded-xl font-medium">✓ Prinsip fermentasi</div>
+                        <div class="bg-amber-50/80 px-3 py-2 rounded-xl font-medium">✓ Tanpa ubah DNA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Kategori Produk Konvensional -->
+            <div class="flex flex-wrap items-center gap-2 mb-8">
+                <span class="text-xs font-bold text-slate-500 uppercase mr-1">Filter Jenis Mikroba:</span>
+                <button onclick="filterKonvensional('all', this)" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-600 text-white shadow-sm transition-all">Semua Produk (7)</button>
+                <button onclick="filterKonvensional('jamur', this)" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-amber-50 transition-all">Jamur / Ragi</button>
+                <button onclick="filterKonvensional('bakteri', this)" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-amber-50 transition-all">Bakteri</button>
+            </div>
+
+            <!-- Grid Kartu Produk Bioteknologi Konvensional (7 Produk Lengkap dengan SVG) -->
+            <div id="konvensional-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- 1. TEMPE -->
+                <div data-type="jamur" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Jamur (Kapang)</span>
+                            <span class="text-xs font-semibold text-slate-400">#01</span>
+                        </div>
+                        <!-- Ilustrasi SVG Tempe -->
+                        <div class="w-full h-32 bg-amber-50/60 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Daun Pisang Alas -->
+                                <ellipse cx="70" cy="76" rx="58" ry="14" fill="#16a34a"/>
+                                <path d="M18 76 L122 76" stroke="#15803d" stroke-width="1.5"/>
+                                <!-- Potongan Tempe 1 -->
+                                <rect x="32" y="34" width="66" height="36" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                                <!-- Biji Kedelai & Hifa Putih -->
+                                <circle cx="44" cy="46" r="4.5" fill="#fbbf24" stroke="#b45309" stroke-width="1"/>
+                                <circle cx="58" cy="44" r="4.5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+                                <circle cx="72" cy="47" r="4.5" fill="#fbbf24" stroke="#b45309" stroke-width="1"/>
+                                <circle cx="85" cy="45" r="4.5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+                                <circle cx="48" cy="59" r="4.5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+                                <circle cx="64" cy="58" r="4.5" fill="#fbbf24" stroke="#b45309" stroke-width="1"/>
+                                <circle cx="80" cy="60" r="4.5" fill="#fbbf24" stroke="#b45309" stroke-width="1"/>
+                                <!-- Miselium / Hifa Jamur -->
+                                <path d="M36 42 Q 52 52, 70 42 T 92 56" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                                <path d="M40 62 Q 60 50, 86 62" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Tempe</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Biji Kedelai</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-emerald-700">Rhizopus oligosporus &amp; Rhizopus oryzae</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Hifa jamur mengikat biji kedelai menjadi padat dan memecah protein kompleks agar mudah dicerna.</p>
+                    </div>
+                </div>
+
+                <!-- 2. TAPAI SINGKONG / KETAN -->
+                <div data-type="jamur" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Jamur (Khamir)</span>
+                            <span class="text-xs font-semibold text-slate-400">#02</span>
+                        </div>
+                        <!-- Ilustrasi SVG Tapai -->
+                        <div class="w-full h-32 bg-yellow-50/70 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Mangkuk -->
+                                <path d="M25 56 C25 78, 115 78, 115 56 Z" fill="#0d9488" stroke="#115e59" stroke-width="2"/>
+                                <ellipse cx="70" cy="56" rx="45" ry="10" fill="#14b8a6"/>
+                                <!-- Potongan Tapai Kuning Lembut -->
+                                <rect x="40" y="34" width="28" height="22" rx="7" transform="rotate(-10 40 34)" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+                                <rect x="68" y="32" width="30" height="22" rx="7" transform="rotate(12 68 32)" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+                                <rect x="52" y="42" width="32" height="20" rx="7" fill="#facc15" stroke="#ca8a04" stroke-width="2"/>
+                                <!-- Gelembung Aroma Alkohol/CO2 -->
+                                <circle cx="52" cy="22" r="3" fill="#eab308" opacity="0.6"/>
+                                <circle cx="72" cy="18" r="4" fill="#eab308" opacity="0.5"/>
+                                <circle cx="88" cy="24" r="2.5" fill="#eab308" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Tapai Singkong / Ketan</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Singkong / Beras Ketan</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-emerald-700">Saccharomyces cerevisiae</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Mengubah karbohidrat (amilum) menjadi gula sederhana, sedikit alkohol (etanol), dan gas CO₂ sehingga bertekstur lunak.</p>
+                    </div>
+                </div>
+
+                <!-- 3. YOGHURT -->
+                <div data-type="bakteri" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">Bakteri Asam Laktat</span>
+                            <span class="text-xs font-semibold text-slate-400">#03</span>
+                        </div>
+                        <!-- Ilustrasi SVG Yoghurt -->
+                        <div class="w-full h-32 bg-pink-50/60 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Gelas Kaca Yoghurt -->
+                                <path d="M46 26 L94 26 L88 82 C87 86, 84 88, 80 88 L60 88 C56 88, 53 86, 52 82 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="2.5"/>
+                                <!-- Isi Yoghurt Creamy -->
+                                <path d="M48 40 L92 40 L87 80 C86 84, 83 85, 80 85 L60 85 C57 85, 54 84, 53 80 Z" fill="#fce7f3"/>
+                                <ellipse cx="70" cy="40" rx="22" ry="5" fill="#fbcfe8"/>
+                                <!-- Buah Stroberi di Atas -->
+                                <path d="M64 34 C64 28, 76 28, 76 34 C76 40, 70 44, 70 44 C70 44, 64 40, 64 34 Z" fill="#f43f5e"/>
+                                <path d="M66 29 L70 32 L74 29" fill="none" stroke="#16a34a" stroke-width="2"/>
+                                <!-- Sendok -->
+                                <path d="M84 14 L74 38" stroke="#cbd5e1" stroke-width="3.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Yoghurt</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Susu Segar</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-blue-700">Lactobacillus bulgaricus &amp; Streptococcus thermophilus</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Mengubah laktosa susu menjadi asam laktat sehingga pH turun, protein menggumpal, dan rasa menjadi asam segar.</p>
+                    </div>
+                </div>
+
+                <!-- 4. KEJU -->
+                <div data-type="bakteri" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">Bakteri + Enzim</span>
+                            <span class="text-xs font-semibold text-slate-400">#04</span>
+                        </div>
+                        <!-- Ilustrasi SVG Keju -->
+                        <div class="w-full h-32 bg-amber-50/70 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Potongan Keju Segitiga 3D -->
+                                <polygon points="30,45 105,30 112,50 30,50" fill="#fef08a" stroke="#eab308" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="30,50 112,50 112,78 30,78" fill="#facc15" stroke="#ca8a04" stroke-width="2" stroke-linejoin="round"/>
+                                <!-- Lubang-lubang Keju -->
+                                <circle cx="50" cy="64" r="6" fill="#ca8a04"/>
+                                <circle cx="76" cy="60" r="4.5" fill="#ca8a04"/>
+                                <circle cx="95" cy="67" r="7" fill="#ca8a04"/>
+                                <circle cx="64" cy="72" r="3" fill="#ca8a04"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Keju</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Susu + Enzim Rennet</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-blue-700">Lactococcus lactis &amp; Lactobacillus casei</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Bakteri mengasamkan susu, lalu enzim rennet menggumpalkan protein kasein menjadi dadih (curd) yang dipadatkan.</p>
+                    </div>
+                </div>
+
+                <!-- 5. KECAP -->
+                <div data-type="jamur" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Jamur (Kapang)</span>
+                            <span class="text-xs font-semibold text-slate-400">#05</span>
+                        </div>
+                        <!-- Ilustrasi SVG Kecap -->
+                        <div class="w-full h-32 bg-stone-100 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Botol Kecap -->
+                                <rect x="61" y="16" width="18" height="16" rx="2" fill="#451a03"/>
+                                <rect x="59" y="12" width="22" height="6" rx="2" fill="#dc2626"/>
+                                <path d="M61 32 L50 44 L50 82 C50 86, 53 88, 57 88 L83 88 C87 88, 90 86, 90 82 L90 44 L79 32 Z" fill="#291509" stroke="#1c1917" stroke-width="2"/>
+                                <!-- Label Botol -->
+                                <rect x="53" y="50" width="34" height="24" rx="4" fill="#fef3c7"/>
+                                <circle cx="70" cy="62" r="7" fill="#78350f"/>
+                                <!-- Biji Kedelai Hitam -->
+                                <ellipse cx="34" cy="82" rx="6" ry="4" fill="#1c1917"/>
+                                <ellipse cx="105" cy="82" rx="6" ry="4" fill="#1c1917"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Kecap</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Kedelai Hitam + Gula Merah</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-emerald-700">Aspergillus wentii &amp; Aspergillus oryzae</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Menghidrolisis protein kedelai menjadi asam amino (pemberi rasa gurih/umami) melalui fermentasi koji dan larutan garam.</p>
+                    </div>
+                </div>
+
+                <!-- 6. NATA DE COCO -->
+                <div data-type="bakteri" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">Bakteri Selulosa</span>
+                            <span class="text-xs font-semibold text-slate-400">#06</span>
+                        </div>
+                        <!-- Ilustrasi SVG Nata de Coco -->
+                        <div class="w-full h-32 bg-cyan-50/70 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Buah Kelapa -->
+                                <circle cx="48" cy="56" r="24" fill="#78350f"/>
+                                <circle cx="48" cy="56" r="19" fill="#ffffff"/>
+                                <circle cx="48" cy="56" r="13" fill="#e0f2fe"/>
+                                <!-- Kubus Nata de Coco Kenyal -->
+                                <rect x="74" y="34" width="22" height="22" rx="4" fill="#ffffff" fill-opacity="0.9" stroke="#38bdf8" stroke-width="2"/>
+                                <rect x="92" y="48" width="22" height="22" rx="4" fill="#e0f2fe" fill-opacity="0.9" stroke="#0284c7" stroke-width="2"/>
+                                <rect x="72" y="60" width="22" height="22" rx="4" fill="#f0f9ff" fill-opacity="0.95" stroke="#38bdf8" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Nata de Coco</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Air Kelapa</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-blue-700">Acetobacter xylinum</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Mengubah gula dalam air kelapa menjadi lapisan serat <strong>selulosa bakteri</strong> berwarna putih, kenyal, dan kaya serat.</p>
+                    </div>
+                </div>
+
+                <!-- 7. ROTI -->
+                <div data-type="jamur" class="konv-card bg-white rounded-3xl p-6 border border-slate-200 shadow-sm card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">Jamur (Ragi Roti)</span>
+                            <span class="text-xs font-semibold text-slate-400">#07</span>
+                        </div>
+                        <!-- Ilustrasi SVG Roti -->
+                        <div class="w-full h-32 bg-orange-50/70 rounded-2xl flex items-center justify-center mb-4 p-2">
+                            <svg viewBox="0 0 140 100" class="w-32 h-24">
+                                <!-- Roti Tawar / Loaf Mengembang -->
+                                <path d="M30 48 C24 34, 42 24, 70 24 C98 24, 116 34, 110 48 L106 78 C106 82, 102 84, 98 84 L42 84 C38 84, 34 82, 34 78 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
+                                <path d="M38 48 L102 48 L99 80 L41 80 Z" fill="#fef3c7"/>
+                                <!-- Pori-pori Gas CO2 pada Roti -->
+                                <circle cx="54" cy="60" r="2.5" fill="#d97706"/>
+                                <circle cx="70" cy="56" r="3" fill="#d97706"/>
+                                <circle cx="85" cy="62" r="2" fill="#d97706"/>
+                                <circle cx="62" cy="70" r="2" fill="#d97706"/>
+                                <circle cx="78" cy="71" r="2.5" fill="#d97706"/>
+                                <!-- Garis Panggang Atas -->
+                                <path d="M52 32 L58 40 M70 30 L70 40 M88 32 L82 40" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-slate-900 mb-1">Roti</h3>
+                        <p class="text-xs text-slate-500 mb-3">Bahan Baku: <strong>Tepung Terigu + Gula</strong></p>
+                    </div>
+                    <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-100">
+                        <p class="text-[11px] font-bold uppercase text-slate-400 mb-1">Mikroorganisme:</p>
+                        <p class="text-sm font-bold italic text-emerald-700">Saccharomyces cerevisiae</p>
+                        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Fermentasi gula menghasilkan gelembung <strong>gas CO₂</strong> yang terperangkap dalam gluten adonan sehingga roti mengembang empuk.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 3: BIOTEKNOLOGI MODERN ==================== -->
+    <section id="modern" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-16">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+            <div class="max-w-2xl">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider mb-3">
+                    Bagian 03 • Rekayasa Tingkat Sel &amp; Molekul
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mb-3">
+                    Bioteknologi Modern
+                </h2>
+                <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                    Bioteknologi yang menggunakan prinsip <strong>rekayasa genetika (manipulasi DNA)</strong>, kultur sel/jaringan, serta teknologi reproduksi dengan peralatan canggih dan kondisi steril.
+                </p>
+            </div>
+
+            <!-- Ciri-ciri Utama Modern -->
+            <div class="bg-blue-50/70 rounded-2xl p-4 sm:p-5 border border-blue-200 lg:max-w-md">
+                <h3 class="font-display font-bold text-sm text-blue-900 uppercase tracking-wide mb-2.5 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Ciri-Ciri Utama:
+                </h3>
+                <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm text-slate-800">
+                    <div class="bg-white px-3 py-2 rounded-xl font-medium shadow-2xs">✓ Manipulasi gen/DNA</div>
+                    <div class="bg-white px-3 py-2 rounded-xl font-medium shadow-2xs">✓ Alat canggih &amp; steril</div>
+                    <div class="bg-white px-3 py-2 rounded-xl font-medium shadow-2xs">✓ Sifat baru terarah</div>
+                    <div class="bg-white px-3 py-2 rounded-xl font-medium shadow-2xs">✓ Produksi massal cepat</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 Kartu Visual Interaktif Bioteknologi Modern dengan Diagram SVG -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- 1. REKAYASA GENETIKA / DNA REKOMBINAN -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm card-hover">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <span class="px-3.5 py-1 rounded-full bg-blue-600 text-white text-xs font-bold">01 • Teknologi DNA Rekombinan</span>
+                    <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-lg">Bidang Kesehatan &amp; Pertanian</span>
+                </div>
+                <h3 class="font-display font-bold text-2xl text-slate-900 mb-3">
+                    Rekayasa Genetika (Transgenik &amp; Insulin)
+                </h3>
+                
+                <!-- Diagram SVG Pembuatan Insulin Sintetis -->
+                <div class="bg-slate-900 rounded-2xl p-4 mb-5 border border-slate-800">
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-cyan-300 mb-2 text-center">
+                        Skema Produksi Hormon Insulin Manusia oleh Bakteri E. coli
+                    </p>
+                    <svg viewBox="0 0 460 155" class="w-full h-auto">
+                        <!-- Step 1: Sel Manusia & Gen Insulin -->
+                        <g transform="translate(15, 20)">
+                            <rect x="0" y="0" width="95" height="105" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                            <text x="47" y="18" fill="#bae6fd" font-size="9.5" font-weight="bold" text-anchor="middle">1. Gen Manusia</text>
+                            <!-- DNA Heliks -->
+                            <path d="M25 32 Q 47 45, 70 32" fill="none" stroke="#60a5fa" stroke-width="3"/>
+                            <path d="M25 45 Q 47 32, 70 45" fill="none" stroke="#93c5fd" stroke-width="3"/>
+                            <!-- Potongan Gen Insulin -->
+                            <rect x="24" y="62" width="46" height="14" rx="4" fill="#f43f5e"/>
+                            <text x="47" y="72" fill="#ffffff" font-size="8.5" font-weight="bold" text-anchor="middle">Gen Insulin</text>
+                            <text x="47" y="94" fill="#94a3b8" font-size="8" text-anchor="middle">Dipotong Enzim Restriksi</text>
+                        </g>
+
+                        <!-- Panah 1 -->
+                        <path d="M114 72 L130 72" stroke="#34d399" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+                        <!-- Step 2: Plasmid Bakteri -->
+                        <g transform="translate(134, 20)">
+                            <rect x="0" y="0" width="95" height="105" rx="12" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+                            <text x="47" y="18" fill="#a7f3d0" font-size="9.5" font-weight="bold" text-anchor="middle">2. Plasmid E. coli</text>
+                            <!-- Cincin Plasmid -->
+                            <circle cx="47" cy="56" r="22" fill="none" stroke="#34d399" stroke-width="4" stroke-dasharray="105 25"/>
+                            <!-- Sisipan Gen Merah -->
+                            <path d="M62 40 A 22 22 0 0 1 68 58" fill="none" stroke="#f43f5e" stroke-width="5" stroke-linecap="round"/>
+                            <text x="47" y="94" fill="#94a3b8" font-size="8" text-anchor="middle">Disambung Enzim Ligase</text>
+                        </g>
+
+                        <!-- Panah 2 -->
+                        <path d="M233 72 L249 72" stroke="#34d399" stroke-width="2.5"/>
+
+                        <!-- Step 3: Transformasi ke Bakteri -->
+                        <g transform="translate(253, 20)">
+                            <rect x="0" y="0" width="95" height="105" rx="12" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5"/>
+                            <text x="47" y="18" fill="#fde68a" font-size="9.5" font-weight="bold" text-anchor="middle">3. Bakteri Transgenik</text>
+                            <!-- Kapsul Bakteri -->
+                            <rect x="16" y="38" width="62" height="32" rx="16" fill="#065f46" stroke="#34d399" stroke-width="2"/>
+                            <circle cx="52" cy="54" r="10" fill="none" stroke="#34d399" stroke-width="2.5"/>
+                            <path d="M58 46 A 10 10 0 0 1 62 55" fill="none" stroke="#f43f5e" stroke-width="3"/>
+                            <text x="47" y="94" fill="#94a3b8" font-size="8" text-anchor="middle">Membelah Cepat</text>
+                        </g>
+
+                        <!-- Panah 3 -->
+                        <path d="M352 72 L366 72" stroke="#34d399" stroke-width="2.5"/>
+
+                        <!-- Step 4: Panen Insulin -->
+                        <g transform="translate(370, 20)">
+                            <rect x="0" y="0" width="76" height="105" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+                            <text x="38" y="18" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle">4. Insulin</text>
+                            <!-- Vial Botol Insulin -->
+                            <rect x="24" y="34" width="28" height="42" rx="4" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+                            <rect x="28" y="28" width="20" height="6" rx="2" fill="#f43f5e"/>
+                            <rect x="26" y="48" width="24" height="16" fill="#38bdf8"/>
+                            <text x="38" y="94" fill="#a7f3d0" font-size="8" font-weight="bold" text-anchor="middle">Obat Diabetes</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="space-y-2.5 text-sm text-slate-600 leading-relaxed">
+                    <p>
+                        <strong>1. Pembuatan Hormon Insulin:</strong> Gen penghasil insulin manusia disisipkan ke dalam plasmid bakteri <em>Escherichia coli</em> sehingga bakteri mampu memproduksi insulin manusia secara massal untuk penderita <strong>diabetes melitus</strong>.
+                    </p>
+                    <p>
+                        <strong>2. Tanaman Transgenik (Jagung Bt):</strong> Tanaman jagung disisipi gen dari bakteri <em>Bacillus thuringiensis</em> yang menghasilkan racun kristal pembunuh hama ulat penggerek batang tanpa perlu penyemprotan pestisida berlebihan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2. KULTUR JARINGAN TUMBUHAN -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm card-hover">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <span class="px-3.5 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold">02 • Sifat Totipotensi Sel</span>
+                    <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg">Bidang Pertanian</span>
+                </div>
+                <h3 class="font-display font-bold text-2xl text-slate-900 mb-3">
+                    Kultur Jaringan Tumbuhan (Tissue Culture)
+                </h3>
+
+                <!-- Diagram SVG Kultur Jaringan -->
+                <div class="bg-emerald-950 rounded-2xl p-4 mb-5 border border-emerald-900">
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-300 mb-2 text-center">
+                        Tahapan Perbanyakan Bibit Unggul Bebas Penyakit
+                    </p>
+                    <svg viewBox="0 0 460 155" class="w-full h-auto">
+                        <!-- Eksplan -->
+                        <g transform="translate(15, 22)">
+                            <rect x="0" y="0" width="95" height="105" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+                            <text x="47" y="18" fill="#a7f3d0" font-size="9.5" font-weight="bold" text-anchor="middle">1. Eksplan</text>
+                            <path d="M25 65 C30 40, 65 35, 70 55 C55 68, 35 70, 25 65 Z" fill="#10b981"/>
+                            <rect x="40" y="47" width="14" height="14" stroke="#fde047" stroke-width="2" stroke-dasharray="3 2" fill="none"/>
+                            <text x="47" y="92" fill="#d1fae5" font-size="8" text-anchor="middle">Potongan Jaringan Daun</text>
+                        </g>
+
+                        <path d="M114 74 L130 74" stroke="#6ee7b7" stroke-width="2.5"/>
+
+                        <!-- Kalus di Media Agar -->
+                        <g transform="translate(134, 22)">
+                            <rect x="0" y="0" width="95" height="105" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+                            <text x="47" y="18" fill="#a7f3d0" font-size="9.5" font-weight="bold" text-anchor="middle">2. Kalus</text>
+                            <!-- Botol Kultur -->
+                            <rect x="28" y="30" width="38" height="48" rx="6" fill="#ffffff" fill-opacity="0.15" stroke="#a7f3d0" stroke-width="1.5"/>
+                            <rect x="30" y="62" width="34" height="14" rx="3" fill="#38bdf8" fill-opacity="0.5"/>
+                            <!-- Massa Sel Kalus -->
+                            <circle cx="43" cy="56" r="6" fill="#a3e635"/>
+                            <circle cx="52" cy="56" r="6" fill="#bef264"/>
+                            <circle cx="47" cy="50" r="6" fill="#84cc16"/>
+                            <text x="47" y="92" fill="#d1fae5" font-size="8" text-anchor="middle">Massa Sel Belum Terdiferensiasi</text>
+                        </g>
+
+                        <path d="M233 74 L249 74" stroke="#6ee7b7" stroke-width="2.5"/>
+
+                        <!-- Planlet -->
+                        <g transform="translate(253, 22)">
+                            <rect x="0" y="0" width="95" height="105" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="1.5"/>
+                            <text x="47" y="18" fill="#a7f3d0" font-size="9.5" font-weight="bold" text-anchor="middle">3. Planlet</text>
+                            <rect x="28" y="30" width="38" height="48" rx="6" fill="#ffffff" fill-opacity="0.15" stroke="#a7f3d0" stroke-width="1.5"/>
+                            <rect x="30" y="64" width="34" height="12" rx="3" fill="#38bdf8" fill-opacity="0.5"/>
+                            <!-- Tunas Kecil -->
+                            <path d="M47 64 L47 44" stroke="#4ade80" stroke-width="2.5"/>
+                            <ellipse cx="41" cy="48" rx="6" ry="3.5" transform="rotate(-25 41 48)" fill="#4ade80"/>
+                            <ellipse cx="53" cy="46" rx="6" ry="3.5" transform="rotate(25 53 46)" fill="#86efac"/>
+                            <text x="47" y="92" fill="#d1fae5" font-size="8" text-anchor="middle">Tanaman Kecil Lengkap</text>
+                        </g>
+
+                        <path d="M352 74 L366 74" stroke="#6ee7b7" stroke-width="2.5"/>
+
+                        <!-- Aklimatisasi -->
+                        <g transform="translate(370, 22)">
+                            <rect x="0" y="0" width="76" height="105" rx="12" fill="#047857" stroke="#6ee7b7" stroke-width="1.5"/>
+                            <text x="38" y="18" fill="#ffffff" font-size="9.5" font-weight="bold" text-anchor="middle">4. Bibit</text>
+                            <!-- Pot & Tanaman -->
+                            <polygon points="24,62 52,62 48,78 28,78" fill="#d97706"/>
+                            <path d="M38 62 L38 40" stroke="#a7f3d0" stroke-width="3"/>
+                            <ellipse cx="30" cy="46" rx="8" ry="4" transform="rotate(-20 30 46)" fill="#34d399"/>
+                            <ellipse cx="46" cy="44" rx="8" ry="4" transform="rotate(20 46 44)" fill="#6ee7b7"/>
+                            <text x="38" y="92" fill="#ffffff" font-size="8" font-weight="bold" text-anchor="middle">Seragam &amp; Banyak</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="text-sm text-slate-600 leading-relaxed mb-3">
+                    <strong>Kultur jaringan</strong> memanfaatkan sifat <strong>totipotensi</strong>, yaitu kemampuan setiap sel tumbuhan untuk tumbuh menjadi individu baru yang utuh apabila ditempatkan pada media bernutrisi lengkap dan steril.
+                </p>
+                <div class="bg-emerald-50 rounded-xl p-3 text-xs text-emerald-900 font-medium">
+                    <strong>Keunggulan:</strong> Menghasilkan ribuan bibit tanaman unggul (seperti anggrek, pisang, kelapa sawit) dalam waktu singkat, bebas virus, dan sifatnya identik dengan induknya.
+                </div>
+            </div>
+
+            <!-- 3. KLONING HEWAN -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm card-hover">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <span class="px-3.5 py-1 rounded-full bg-purple-600 text-white text-xs font-bold">03 • Transfer Inti Sel Somatik</span>
+                    <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-lg">Bidang Peternakan</span>
+                </div>
+                <h3 class="font-display font-bold text-2xl text-slate-900 mb-3">
+                    Kloning (Contoh: Domba Dolly)
+                </h3>
+
+                <!-- Ilustrasi SVG Kloning Domba Dolly -->
+                <div class="bg-purple-50 rounded-2xl p-4 mb-5 border border-purple-200">
+                    <svg viewBox="0 0 440 130" class="w-full h-auto">
+                        <!-- Donor Sel Tubuh (Domba A) -->
+                        <g transform="translate(15, 15)">
+                            <rect x="0" y="0" width="115" height="98" rx="12" fill="#ffffff" stroke="#c084fc" stroke-width="1.5"/>
+                            <text x="57" y="18" fill="#6b21a8" font-size="10" font-weight="bold" text-anchor="middle">Domba A (Donor Inti)</text>
+                            <circle cx="57" cy="52" r="20" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+                            <circle cx="57" cy="52" r="8" fill="#7e22ce"/>
+                            <text x="57" y="88" fill="#581c87" font-size="8.5" text-anchor="middle">Diambil Inti Sel Tubuh (2n)</text>
+                        </g>
+
+                        <text x="144" y="68" fill="#7e22ce" font-size="18" font-weight="bold" text-anchor="middle">+</text>
+
+                        <!-- Donor Sel Telur (Domba B) -->
+                        <g transform="translate(160, 15)">
+                            <rect x="0" y="0" width="115" height="98" rx="12" fill="#ffffff" stroke="#c084fc" stroke-width="1.5"/>
+                            <text x="57" y="18" fill="#6b21a8" font-size="10" font-weight="bold" text-anchor="middle">Domba B (Sel Telur)</text>
+                            <circle cx="57" cy="52" r="20" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+                            <circle cx="57" cy="52" r="7" fill="none" stroke="#db2777" stroke-width="1.5" stroke-dasharray="3 2"/>
+                            <text x="57" y="88" fill="#581c87" font-size="8.5" text-anchor="middle">Inti Sel Telur Dibuang</text>
+                        </g>
+
+                        <path d="M282 64 L302 64" stroke="#7e22ce" stroke-width="2.5"/>
+
+                        <!-- Hasil Kloning: Domba Dolly -->
+                        <g transform="translate(308, 15)">
+                            <rect x="0" y="0" width="118" height="98" rx="12" fill="#581c87"/>
+                            <text x="59" y="18" fill="#f3e8ff" font-size="10" font-weight="bold" text-anchor="middle">Domba Dolly (Klon)</text>
+                            <!-- Ikon Domba Lucu -->
+                            <circle cx="59" cy="52" r="18" fill="#ffffff"/>
+                            <circle cx="46" cy="48" r="8" fill="#ffffff"/>
+                            <circle cx="72" cy="48" r="8" fill="#ffffff"/>
+                            <circle cx="59" cy="54" r="9" fill="#334155"/>
+                            <circle cx="56" cy="52" r="1.5" fill="#ffffff"/>
+                            <circle cx="62" cy="52" r="1.5" fill="#ffffff"/>
+                            <text x="59" y="88" fill="#e9d5ff" font-size="8.5" font-weight="bold" text-anchor="middle">100% Identik Domba A</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    <strong>Kloning</strong> adalah teknik menghasilkan keturunan yang identik secara genetik tanpa melalui perkawinan (aseksual). Inti sel somatik (sel kelenjar susu) dari Domba A dimasukkan ke dalam sel telur Domba B yang telah dihilangkan intinya, kemudian ditanam ke rahim induk pengganti hingga lahir <strong>Domba Dolly (1996)</strong>.
+                </p>
+            </div>
+
+            <!-- 4. BAYI TABUNG (IVF) -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm card-hover">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <span class="px-3.5 py-1 rounded-full bg-rose-600 text-white text-xs font-bold">04 • Fertilisasi In Vitro (IVF)</span>
+                    <span class="text-xs font-bold text-rose-700 bg-rose-50 px-3 py-1 rounded-lg">Bidang Kedokteran</span>
+                </div>
+                <h3 class="font-display font-bold text-2xl text-slate-900 mb-3">
+                    Bayi Tabung (In Vitro Fertilization)
+                </h3>
+
+                <!-- Ilustrasi SVG Bayi Tabung -->
+                <div class="bg-rose-50 rounded-2xl p-4 mb-5 border border-rose-200">
+                    <svg viewBox="0 0 440 130" class="w-full h-auto">
+                        <!-- Cawan Petri Pembuahan -->
+                        <g transform="translate(20, 15)">
+                            <rect x="0" y="0" width="125" height="98" rx="12" fill="#ffffff" stroke="#fb7185" stroke-width="1.5"/>
+                            <text x="62" y="18" fill="#9f1239" font-size="10" font-weight="bold" text-anchor="middle">1. Fertilisasi di Cawan</text>
+                            <ellipse cx="62" cy="54" rx="34" ry="18" fill="#ffe4e6" stroke="#f43f5e" stroke-width="2"/>
+                            <!-- Sel Ovum -->
+                            <circle cx="66" cy="54" r="10" fill="#fda4af" stroke="#e11d48" stroke-width="1.5"/>
+                            <!-- Sel Sperma -->
+                            <circle cx="44" cy="52" r="3.5" fill="#2563eb"/>
+                            <path d="M40 52 Q 33 48, 28 53" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+                            <text x="62" y="88" fill="#881337" font-size="8.5" text-anchor="middle">Ovum + Sperma di Luar Tubuh</text>
+                        </g>
+
+                        <path d="M152 64 L172 64" stroke="#e11d48" stroke-width="2.5"/>
+
+                        <!-- Pembelahan Embrio -->
+                        <g transform="translate(178, 15)">
+                            <rect x="0" y="0" width="115" height="98" rx="12" fill="#ffffff" stroke="#fb7185" stroke-width="1.5"/>
+                            <text x="57" y="18" fill="#9f1239" font-size="10" font-weight="bold" text-anchor="middle">2. Zigot → Embrio</text>
+                            <circle cx="57" cy="54" r="18" fill="#fff1f2" stroke="#f43f5e" stroke-width="1.5"/>
+                            <circle cx="51" cy="49" r="6" fill="#fb7185"/>
+                            <circle cx="63" cy="49" r="6" fill="#fb7185"/>
+                            <circle cx="51" cy="60" r="6" fill="#fda4af"/>
+                            <circle cx="63" cy="60" r="6" fill="#fda4af"/>
+                            <text x="57" y="88" fill="#881337" font-size="8.5" text-anchor="middle">Dikultur Beberapa Hari</text>
+                        </g>
+
+                        <path d="M298 64 L318 64" stroke="#e11d48" stroke-width="2.5"/>
+
+                        <!-- Implantasi ke Rahim -->
+                        <g transform="translate(324, 15)">
+                            <rect x="0" y="0" width="100" height="98" rx="12" fill="#9f1239"/>
+                            <text x="50" y="18" fill="#ffe4e6" font-size="10" font-weight="bold" text-anchor="middle">3. Implantasi</text>
+                            <path d="M50 34 C38 34, 32 45, 40 55 C45 61, 50 67, 50 67 C50 67, 55 61, 60 55 C68 45, 62 34, 50 34 Z" fill="#fda4af"/>
+                            <text x="50" y="88" fill="#fecdd3" font-size="8.5" font-weight="bold" text-anchor="middle">Ditanam ke Rahim Ibu</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    <strong>Bayi tabung</strong> membantu pasangan yang mengalami gangguan kesuburan (infertilitas). Pembuahan antara sel telur (ovum) dan sel sperma dilakukan secara terkendali di dalam wadah kaca laboratorium (<em>in vitro</em>), lalu embrio yang terbentuk ditanamkan kembali ke dalam rahim ibu.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 4: DAMPAK POSITIF & NEGATIF ==================== -->
+    <section id="dampak" class="py-16 sm:py-24 bg-slate-900 text-white scroll-mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="inline-block px-3.5 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+                    Bagian 04 • Evaluasi &amp; Etika Sains
+                </span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl mb-4">
+                    Dampak Positif &amp; Negatif Bioteknologi
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    Seperti pisau bermata dua, perkembangan bioteknologi membawa manfaat luar biasa sekaligus risiko yang harus diantisipasi secara bijak.
+                </p>
+            </div>
+
+            <!-- Perbandingan Dua Kolom -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- KOLOM DAMPAK POSITIF -->
+                <div class="bg-gradient-to-b from-emerald-950/90 to-slate-800/90 rounded-3xl p-6 sm:p-8 border border-emerald-500/30 shadow-xl">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-emerald-500/20">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 flex-shrink-0">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-2xl text-emerald-300">Dampak Positif (Manfaat)</h3>
+                            <p class="text-xs text-emerald-200/70">Kontribusi bagi kesejahteraan manusia &amp; alam</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 text-sm sm:text-base">
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-emerald-400 font-bold block mb-1">1. Bidang Pangan &amp; Gizi</span>
+                            <p class="text-slate-300 text-sm">Meningkatkan nilai gizi dan daya simpan makanan (tempe, yoghurt, keju) serta menghasilkan protein sel tunggal (PST) seperti <em>Spirulina</em>.</p>
+                        </li>
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-emerald-400 font-bold block mb-1">2. Bidang Kesehatan &amp; Kedokteran</span>
+                            <p class="text-slate-300 text-sm">Produksi hormon insulin sintetis, vaksin rekombinan, antibodi monoklonal untuk terapi kanker, serta antibiotik (penisilin).</p>
+                        </li>
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-emerald-400 font-bold block mb-1">3. Bidang Pertanian</span>
+                            <p class="text-slate-300 text-sm">Tersedianya tanaman transgenik tahan hama/kekeringan dan bibit kultur jaringan seragam yang mengurangi ketergantungan pestisida kimia.</p>
+                        </li>
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-emerald-400 font-bold block mb-1">4. Bidang Lingkungan (Bioremediasi)</span>
+                            <p class="text-slate-300 text-sm">Pemanfaatan bakteri <em>Pseudomonas putida</em> untuk mengurai tumpahan minyak di laut serta produksi energi terbarukan (biogas &amp; bioetanol).</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- KOLOM DAMPAK NEGATIF -->
+                <div class="bg-gradient-to-b from-rose-950/90 to-slate-800/90 rounded-3xl p-6 sm:p-8 border border-rose-500/30 shadow-xl">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-rose-500/20">
+                        <div class="w-14 h-14 rounded-2xl bg-rose-500/20 border border-rose-400/40 flex items-center justify-center text-rose-300 flex-shrink-0">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-2xl text-rose-300">Dampak Negatif (Risiko)</h3>
+                            <p class="text-xs text-rose-200/70">Tantangan ekologi, kesehatan, dan bioetika</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 text-sm sm:text-base">
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-rose-400 font-bold block mb-1">1. Berkurangnya Plasma Nutfah (Keanekaragaman Hayati)</span>
+                            <p class="text-slate-300 text-sm">Budidaya tanaman transgenik unggul secara besar-besaran membuat petani meninggalkan varietas lokal sehingga tanaman asli terancam punah.</p>
+                        </li>
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-rose-400 font-bold block mb-1">2. Risiko Alergi &amp; Resistensi Antibiotik</span>
+                            <p class="text-slate-300 text-sm">Gen asing pada produk pangan transgenik berpotensi memicu reaksi alergi pada orang sensitif, dan gen penanda antibiotik dikhawatirkan berpindah ke bakteri patogen.</p>
+                        </li>
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-rose-400 font-bold block mb-1">3. Pencemaran Biologis &amp; Gangguan Ekosistem</span>
+                            <p class="text-slate-300 text-sm">Serbuk sari tanaman transgenik (misalnya Jagung Bt) dapat menyerbuki tanaman liar atau ikut meracuni serangga nontarget seperti kupu-kupu.</p>
+                        </li>
+                        <li class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                            <span class="text-rose-400 font-bold block mb-1">4. Masalah Etika, Moral, dan Sosial Ekonomi</span>
+                            <p class="text-slate-300 text-sm">Kloning pada hewan memicu perdebatan bioetika jika diterapkan pada manusia, serta ketimpangan ekonomi karena hak paten benih dikuasai perusahaan besar.</p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BAGIAN 5: KUIS HOTS BERBASIS STIMULUS ==================== -->
+    <section id="kuis-hots" class="py-16 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-3">
+                Bagian 05 • Evaluasi Pemahaman (HOTS)
+            </span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mb-3">
+                Kuis HOTS Berbasis Stimulus
+            </h2>
+            <p class="text-slate-600 text-base sm:text-lg">
+                Cermati setiap stimulus data, grafik, atau studi kasus berikut, lalu pilih jawaban yang paling tepat!
+            </p>
+        </div>
+
+        <!-- Bar Skor & Status Kuis -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm mb-8 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-display font-extrabold flex items-center justify-center">
+                    <span id="answered-count">0</span>/5
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase">Progres Pengerjaan</p>
+                    <p class="text-sm font-bold text-slate-800">Soal Terjawab</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="text-xs font-bold text-slate-400 uppercase">Skor Sementara</p>
+                    <p id="live-score" class="text-lg font-display font-extrabold text-emerald-600">0 Poin</p>
+                </div>
+                <button onclick="resetQuiz()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold transition-colors flex items-center gap-1.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    Ulangi Kuis
+                </button>
+            </div>
+        </div>
+
+        <!-- Kontainer Soal Kuis HOTS -->
+        <div id="quiz-container" class="space-y-8">
+            <!-- Soal akan dirender secara dinamis oleh JavaScript -->
+        </div>
+
+        <!-- Kartu Hasil Akhir & Sertifikat Mini (Muncul setelah 5 soal dijawab) -->
+        <div id="quiz-result-card" class="hidden mt-10 bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-white rounded-3xl p-8 sm:p-10 shadow-2xl border border-emerald-400/30 text-center">
+            <div id="badge-icon" class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-amber-400/20 border border-amber-300/40 flex items-center justify-center text-4xl">
+                🏆
+            </div>
+            <span class="inline-block px-4 py-1 rounded-full bg-emerald-400/20 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-2">
+                Sertifikat Penyelesaian Modul
+            </span>
+            <h3 id="result-title" class="font-display font-extrabold text-2xl sm:text-3xl mb-2">
+                Luar Biasa! Kamu Menguasai Materi Bioteknologi!
+            </h3>
+            <p id="result-desc" class="text-slate-200 text-sm sm:text-base max-w-xl mx-auto mb-6">
+                Kamu telah menyelesaikan seluruh tantangan soal HOTS berbasis stimulus pada materi Bioteknologi IPA Kelas 9.
+            </p>
+            <div class="inline-flex items-center gap-6 bg-white/10 backdrop-blur-md px-8 py-4 rounded-2xl border border-white/15 mb-6">
+                <div>
+                    <span class="block text-xs text-slate-300 uppercase">Skor Akhir</span>
+                    <span id="final-score" class="font-display font-extrabold text-3xl text-amber-300">100</span>
+                </div>
+                <div class="h-10 w-px bg-white/20"></div>
+                <div>
+                    <span class="block text-xs text-slate-300 uppercase">Predikat</span>
+                    <span id="final-grade" class="font-display font-bold text-lg text-emerald-300">Sangat Kompeten</span>
+                </div>
+            </div>
+            <div>
+                <button onclick="resetQuiz()" class="px-7 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-display font-bold text-sm sm:text-base transition-all shadow-lg">
+                    Kerjakan Ulang Kuis HOTS
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER & PANDUAN GITHUB PAGES ==================== -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-8 border-b border-slate-800/80">
+                <div class="md:col-span-7 space-y-2">
+                    <div class="flex items-center gap-2.5 text-white font-display font-bold text-lg">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        Media Pembelajaran Interaktif IPA Kelas 9 — Bioteknologi
+                    </div>
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        Dirancang mandiri menggunakan HTML5, Tailwind CSS, dan ilustrasi vektor SVG inline agar ringan, responsif di ponsel maupun laptop, serta bebas tautan gambar eksternal yang rusak.
+                    </p>
+                </div>
+
+                <!-- Petunjuk Singkat Upload ke GitHub Pages -->
+                <div class="md:col-span-5 bg-slate-900 rounded-2xl p-4 border border-slate-800">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                        Cara Hosting di GitHub Pages:
+                    </h4>
+                    <ol class="text-xs text-slate-300 space-y-1 list-decimal list-inside">
+                        <li>Simpan file ini dengan nama <code class="text-amber-300 bg-slate-800 px-1.5 py-0.5 rounded">index.html</code>.</li>
+                        <li>Unggah ke repositori GitHub Anda (<em>Add file &rarr; Upload files</em>).</li>
+                        <li>Buka <strong>Settings &rarr; Pages</strong>, pilih branch <code class="text-emerald-300">main</code> lalu klik <strong>Save</strong>.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+                <p>&copy; 2026 Modul Pembelajaran IPA Kelas IX • Bioteknologi Konvensional &amp; Modern</p>
+                <p>Dibuat untuk mendukung pembelajaran sains interaktif di kelas</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT INTERAKTIF ==================== -->
+    <script>
+        // 1. Indikator Progres Scroll & Menu Mobile
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            document.getElementById('reading-progress').style.width = scrolled + '%';
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Filter Produk Bioteknologi Konvensional
+        function filterKonvensional(category, btnElement) {
+            // Update tampilan tombol aktif
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+            });
+            btnElement.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+            btnElement.classList.add('bg-amber-600', 'text-white', 'shadow-sm');
+
+            // Filter kartu
+            const cards = document.querySelectorAll('.konv-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-type') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // 3. Data Kuis HOTS Berbasis Stimulus (5 Soal Lengkap dengan Visual Stimulus)
+        const hotsQuestions = [
+            {
+                id: 1,
+                category: "Stimulus Data Grafik Fermentasi",
+                stimulusTitle: "Grafik Hubungan Waktu Fermentasi Yoghurt terhadap Nilai pH Susu",
+                stimulusVisual: `
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 mb-4">
+                        <p class="text-xs text-slate-600 mb-3">Sekelompok siswa kelas 9 melakukan percobaan pembuatan yoghurt menggunakan starter bakteri <em>Lactobacillus bulgaricus</em> dan <em>Streptococcus thermophilus</em> pada suhu 42°C. Perubahan derajat keasaman (pH) diamati setiap 2 jam pada grafik berikut:</p>
+                        <svg viewBox="0 0 420 165" class="w-full max-w-lg mx-auto h-auto bg-white rounded-xl p-2 border border-slate-100">
+                            <!-- Sumbu X & Y -->
+                            <line x1="50" y1="20" x2="50" y2="130" stroke="#64748b" stroke-width="2"/>
+                            <line x1="50" y1="130" x2="390" y2="130" stroke="#64748b" stroke-width="2"/>
+                            <!-- Grid Horizontal -->
+                            <line x1="50" y1="35" x2="390" y2="35" stroke="#e2e8f0" stroke-dasharray="4 3"/>
+                            <line x1="50" y1="65" x2="390" y2="65" stroke="#e2e8f0" stroke-dasharray="4 3"/>
+                            <line x1="50" y1="95" x2="390" y2="95" stroke="#e2e8f0" stroke-dasharray="4 3"/>
+                            <!-- Label Y (pH) -->
+                            <text x="42" y="39" font-size="10" fill="#475569" text-anchor="end">pH 7,0</text>
+                            <text x="42" y="69" font-size="10" fill="#475569" text-anchor="end">pH 5,5</text>
+                            <text x="42" y="99" font-size="10" fill="#475569" text-anchor="end">pH 4,2</text>
+                            <text x="16" y="80" font-size="10" font-weight="bold" fill="#0f172a" transform="rotate(-90 16 80)" text-anchor="middle">Nilai pH</text>
+                            <!-- Label X (Waktu) -->
+                            <text x="70" y="145" font-size="10" fill="#475569" text-anchor="middle">0 jam</text>
+                            <text x="145" y="145" font-size="10" fill="#475569" text-anchor="middle">2 jam</text>
+                            <text x="220" y="145" font-size="10" fill="#475569" text-anchor="middle">4 jam</text>
+                            <text x="295" y="145" font-size="10" fill="#475569" text-anchor="middle">6 jam</text>
+                            <text x="370" y="145" font-size="10" fill="#475569" text-anchor="middle">8 jam</text>
+                            <!-- Kurva Penurunan pH -->
+                            <polyline points="70,40 145,52 220,76 295,94 370,100" fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="70" cy="40" r="4.5" fill="#059669"/>
+                            <circle cx="145" cy="52" r="4.5" fill="#059669"/>
+                            <circle cx="220" cy="76" r="4.5" fill="#059669"/>
+                            <circle cx="295" cy="94" r="4.5" fill="#059669"/>
+                            <circle cx="370" cy="100" r="4.5" fill="#059669"/>
+                            <!-- Anotasi Titik Mengental -->
+                            <rect x="242" y="106" width="136" height="18" rx="4" fill="#d1fae5"/>
+                            <text x="310" y="118" font-size="9" font-weight="bold" fill="#065f46" text-anchor="middle">Susu mulai mengental (pH 4,2)</text>
+                        </svg>
+                    </div>
+                `,
+                question: "Berdasarkan grafik tersebut, mengapa nilai pH susu menurun tajam dari jam ke-0 hingga jam ke-6 dan menyebabkan susu berubah menjadi kental?",
+                options: [
+                    "Bakteri memecah lemak susu menjadi alkohol sehingga suhu larutan meningkat.",
+                    "Bakteri mengubah gula laktosa menjadi asam laktat sehingga pH turun dan menggumpalkan protein kasein.",
+                    "Jamur ragi menghasilkan gas karbon dioksida yang mengikat air di dalam susu.",
+                    "Enzim rennet dari bakteri menghancurkan seluruh vitamin susu menjadi basa kuat."
+                ],
+                correctIndex: 1,
+                explanation: "Bakteri asam laktat (Lactobacillus bulgaricus & Streptococcus thermophilus) memfermentasi gula susu (laktosa) menjadi asam laktat. Akumulasi asam laktat menurunkan pH hingga sekitar 4,2–4,5, yang menyebabkan protein susu (kasein) terdenaturasi dan menggumpal membentuk tekstur kental."
+            },
+            {
+                id: 2,
+                category: "Stimulus Eksperimen Fermentasi Roti",
+                stimulusTitle: "Tabel Hasil Pengamatan Pengembangan Adonan Roti pada Suhu Berbeda",
+                stimulusVisual: `
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 mb-4">
+                        <p class="text-xs text-slate-600 mb-3">Rani menguji pengaruh suhu air saat melarutkan ragi roti (<em>Saccharomyces cerevisiae</em>) terhadap tinggi kenaikan adonan roti setelah didiamkan selama 45 menit:</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse bg-white rounded-xl overflow-hidden">
+                                <thead>
+                                    <tr class="bg-amber-100 text-amber-950">
+                                        <th class="p-2.5 border border-amber-200">Perlakuan</th>
+                                        <th class="p-2.5 border border-amber-200">Suhu Air Pelarut Ragi</th>
+                                        <th class="p-2.5 border border-amber-200">Tinggi Awal Adonan</th>
+                                        <th class="p-2.5 border border-amber-200">Tinggi Akhir (45 Menit)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-700">
+                                    <tr>
+                                        <td class="p-2.5 border border-slate-200 font-bold">Adonan A</td>
+                                        <td class="p-2.5 border border-slate-200">10°C (Air Es)</td>
+                                        <td class="p-2.5 border border-slate-200">4,0 cm</td>
+                                        <td class="p-2.5 border border-slate-200">4,5 cm</td>
+                                    </tr>
+                                    <tr class="bg-emerald-50/70">
+                                        <td class="p-2.5 border border-slate-200 font-bold text-emerald-800">Adonan B</td>
+                                        <td class="p-2.5 border border-slate-200 font-semibold">35°C (Air Hangat Kuku)</td>
+                                        <td class="p-2.5 border border-slate-200">4,0 cm</td>
+                                        <td class="p-2.5 border border-slate-200 font-bold text-emerald-700">8,2 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 border border-slate-200 font-bold">Adonan C</td>
+                                        <td class="p-2.5 border border-slate-200">85°C (Air Panas)</td>
+                                        <td class="p-2.5 border border-slate-200">4,0 cm</td>
+                                        <td class="p-2.5 border border-slate-200">4,0 cm (Tidak naik)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `,
+                question: "Kesimpulan analisis yang paling tepat untuk menjelaskan perbedaan hasil antara Adonan B dan Adonan C adalah...",
+                options: [
+                    "Pada suhu 85°C air menguap seluruhnya sehingga tepung terigu kehilangan elastisitas.",
+                    "Suhu 35°C merupakan suhu optimum aktivitas enzim ragi menghasilkan gas CO₂, sedangkan suhu 85°C mematikan sel ragi.",
+                    "Ragi Saccharomyces cerevisiae hanya dapat melakukan respirasi aerob pada suhu di atas 80°C.",
+                    "Pada Adonan C gula tidak larut sempurna sehingga ragi kekurangan nutrisi oksigen."
+                ],
+                correctIndex: 1,
+                explanation: "Saccharomyces cerevisiae adalah mikroorganisme hidup yang bekerja optimal pada suhu hangat sekitar 30°C–38°C untuk memecah gula menjadi gas CO₂ (membuat adonan mengembang dua kali lipat). Pada suhu 85°C, sel ragi mati dan enzimnya rusak (denaturasi) sehingga fermentasi tidak terjadi."
+            },
+            {
+                id: 3,
+                category: "Stimulus Studi Kasus Rekayasa Genetika",
+                stimulusTitle: "Inovasi Terapi Diabetes Melitus Modern vs Konvensional",
+                stimulusVisual: `
+                    <div class="bg-blue-50/70 rounded-2xl p-4 border border-blue-200 mb-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <p class="font-bold text-blue-950 mb-1">Bacaan Kasus:</p>
+                        <p>Sebelum tahun 1980-an, hormon insulin untuk pasien diabetes diperoleh dengan cara mengekstrak pankreas sapi atau babi. Namun, metode tersebut membutuhkan puluhan ribu organ hewan, biayanya sangat mahal, dan sering menimbulkan <strong>reaksi alergi</strong> pada pasien karena struktur asam amino insulin hewan sedikit berbeda dengan insulin manusia. Kini, ilmuwan menyisipkan gen pengode insulin manusia ke dalam plasmid bakteri <em>Escherichia coli</em>.</p>
+                    </div>
+                `,
+                question: "Berdasarkan bacaan tersebut, mengapa teknik DNA rekombinan menggunakan bakteri E. coli dinilai jauh lebih unggul dibandingkan ekstraksi organ hewan?",
+                options: [
+                    "Bakteri E. coli merupakan makhluk hidup multiseluler yang memiliki organ pankreas mirip manusia.",
+                    "Insulin yang dihasilkan memiliki struktur identik dengan insulin manusia dan dapat diproduksi massal dalam waktu singkat.",
+                    "Bakteri tersebut mampu menyembuhkan kerusakan pankreas secara permanen hanya dengan satu kali suntikan.",
+                    "Proses rekayasa genetika tidak memerlukan peralatan steril dan dapat dilakukan di industri rumah tangga."
+                ],
+                correctIndex: 1,
+                explanation: "Karena yang disisipkan ke plasmid bakteri adalah gen asli pengode insulin manusia, protein insulin yang disintesis bakteri identik dengan insulin manusia sehingga meminimalkan risiko alergi. Selain itu, bakteri membelah sangat cepat sehingga produksi dapat dilakukan dalam skala industri."
+            },
+            {
+                id: 4,
+                category: "Stimulus Permasalahan Lingkungan & Pertanian",
+                stimulusTitle: "Dilema Budidaya Jagung Transgenik Bt di Lahan Pertanian",
+                stimulusVisual: `
+                    <div class="bg-amber-50/80 rounded-2xl p-4 border border-amber-200 mb-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <p class="font-bold text-amber-950 mb-1">Studi Ekosistem:</p>
+                        <p>Di sebuah sentra pertanian, petani beralih menanam varietas <strong>Jagung Bt</strong> yang mengandung gen bakteri <em>Bacillus thuringiensis</em> sehingga tanaman kebal terhadap hama ulat penggerek batang. Hasil panen meningkat 35% dan penggunaan insektisida semprot berkurang drastis. Namun, 5 tahun kemudian, peneliti menemukan populasi kupu-kupu lokal di sekitar ladang menurun dan benih jagung lokal asli daerah tersebut hampir tidak lagi ditanam.</p>
+                    </div>
+                `,
+                question: "Dampak negatif bioteknologi yang tercermin dari studi kasus ekosistem tersebut adalah...",
+                options: [
+                    "Terjadinya eutrofikasi perairan akibat peningkatan limbah pupuk organik dari batang jagung.",
+                    "Menurunnya keanekaragaman hayati (plasma nutfah) lokal dan terganggunya serangga nontarget di ekosistem.",
+                    "Meningkatnya mutasi genetik pada manusia yang mengonsumsi jagung hasil panen.",
+                    "Terjadinya hujan asam akibat senyawa racun kristal Bt yang menguap ke atmosfer."
+                ],
+                correctIndex: 1,
+                explanation: "Penggunaan tanaman transgenik monokultur secara luas menyebabkan petani meninggalkan varietas lokal sehingga menurunkan keanekaragaman hayati (erosi plasma nutfah). Selain itu, serbuk sari Jagung Bt yang terbawa angin dapat menempel pada tanaman sekitar dan meracuni larva serangga nontarget seperti kupu-kupu."
+            },
+            {
+                id: 5,
+                category: "Stimulus Aplikasi Pelestarian Tanaman Langka",
+                stimulusTitle: "Proyek Konservasi Anggrek Hitam Kalimantan (Coelogyne pandurata)",
+                stimulusVisual: `
+                    <div class="bg-emerald-50/80 rounded-2xl p-4 border border-emerald-200 mb-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <p class="font-bold text-emerald-950 mb-1">Tantangan Konservasi:</p>
+                        <p>Anggrek Hitam (<em>Coelogyne pandurata</em>) adalah flora endemik Kalimantan yang semakin langka akibat kerusakan habitat. Biji anggrek sangat kecil dan tidak memiliki cadangan makanan (endosperma), sehingga sangat sulit berkecambah secara alami di alam bebas. Sebuah balai konservasi ingin memperbanyak 5.000 bibit unggul yang identik dalam waktu 6 bulan.</p>
+                    </div>
+                `,
+                question: "Teknik bioteknologi apa yang paling tepat dipilih oleh balai konservasi tersebut beserta dasar prinsip ilmiahnya?",
+                options: [
+                    "Kloning transfer inti sel, karena dapat menggabungkan dua spesies anggrek berbeda menjadi spesies baru.",
+                    "Kultur jaringan tumbuhan, memanfaatkan sifat totipotensi sel jaringan meristem pada media nutrisi steril.",
+                    "Fermentasi aerob menggunakan jamur Rhizopus untuk mempercepat perkecambahan biji anggrek.",
+                    "Inseminasi buatan pada bunga anggrek agar menghasilkan biji berukuran besar tanpa penyerbukan."
+                ],
+                correctIndex: 1,
+                explanation: "Kultur jaringan (micropropagation) adalah metode paling efektif untuk memperbanyak tanaman langka seperti anggrek dalam jumlah ribuan secara cepat dan seragam. Prinsip dasarnya adalah totipotensi sel tumbuhan yang ditumbuhkan dalam media agar kaya nutrisi, vitamin, dan hormon tumbuh dalam kondisi steril."
+            }
+        ];
+
+        let userAnswers = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            hotsQuestions.forEach((q, qIdx) => {
+                const answered = userAnswers[q.id] !== undefined;
+                const selectedIdx = userAnswers[q.id];
+                const isCorrect = selectedIdx === q.correctIndex;
+
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm transition-all';
+
+                let optionsHTML = '';
+                const letters = ['A', 'B', 'C', 'D'];
+
+                q.options.forEach((optText, optIdx) => {
+                    let btnStyle = 'border-slate-200 bg-white hover:bg-slate-50 hover:border-indigo-300 text-slate-700';
+                    let badgeStyle = 'bg-slate-100 text-slate-600';
+                    let statusIcon = '';
+
+                    if (answered) {
+                        if (optIdx === q.correctIndex) {
+                            btnStyle = 'border-emerald-500 bg-emerald-50 text-emerald-950 font-semibold ring-2 ring-emerald-500/20';
+                            badgeStyle = 'bg-emerald-600 text-white';
+                            statusIcon = '<span class="ml-auto text-emerald-600 font-bold text-xs sm:text-sm flex-shrink-0">✓ Benar</span>';
+                        } else if (optIdx === selectedIdx && selectedIdx !== q.correctIndex) {
+                            btnStyle = 'border-rose-500 bg-rose-50 text-rose-950';
+                            badgeStyle = 'bg-rose-600 text-white';
+                            statusIcon = '<span class="ml-auto text-rose-600 font-bold text-xs sm:text-sm flex-shrink-0">✕ Kurang Tepat</span>';
+                        } else {
+                            btnStyle = 'border-slate-200 bg-slate-50/60 text-slate-400 opacity-75';
+                        }
+                    }
+
+                    optionsHTML += `
+                        <button 
+                            type="button"
+                            ${answered ? 'disabled' : ''}
+                            onclick="selectAnswer(${q.id}, ${optIdx})"
+                            class="w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 transition-all flex items-center gap-3.5 ${btnStyle} ${!answered ? 'cursor-pointer active:scale-[0.99]' : 'cursor-default'}">
+                            <span class="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-display font-extrabold flex-shrink-0 ${badgeStyle}">
+                                ${letters[optIdx]}
+                            </span>
+                            <span class="text-sm sm:text-base leading-snug">${optText}</span>
+                            ${statusIcon}
+                        </button>
+                    `;
+                });
+
+                const feedbackHTML = answered ? `
+                    <div class="mt-5 p-4 sm:p-5 rounded-2xl border ${isCorrect ? 'bg-emerald-50/90 border-emerald-200 text-emerald-950' : 'bg-amber-50/90 border-amber-200 text-amber-950'}">
+                        <div class="flex items-center gap-2 font-display font-bold text-sm mb-1.5">
+                            <span>${isCorrect ? '🎉 Analisis Kamu Tepat!' : '💡 Pembahasan Konsep:'}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm leading-relaxed opacity-90">${q.explanation}</p>
+                    </div>
+                ` : '';
+
+                card.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold">
+                            Soal HOTS #${qIdx + 1} • ${q.category}
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">Bobot: 20 Poin</span>
+                    </div>
+                    <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 mb-3">${q.stimulusTitle}</h3>
+                    ${q.stimulusVisual}
+                    <p class="font-semibold text-slate-900 text-sm sm:text-base mb-4 leading-relaxed">
+                        ${q.question}
+                    </p>
+                    <div class="space-y-2.5">
+                        ${optionsHTML}
+                    </div>
+                    ${feedbackHTML}
+                `;
+
+                container.appendChild(card);
+            });
+
+            updateScoreBoard();
+        }
+
+        function selectAnswer(questionId, optionIndex) {
+            if (userAnswers[questionId] !== undefined) return;
+            userAnswers[questionId] = optionIndex;
+            renderQuiz();
+        }
+
+        function updateScoreBoard() {
+            const totalAnswered = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            hotsQuestions.forEach(q => {
+                if (userAnswers[q.id] === q.correctIndex) {
+                    correctCount++;
+                }
+            });
+
+            const score = correctCount * 20;
+            document.getElementById('answered-count').textContent = totalAnswered;
+            document.getElementById('live-score').textContent = score + ' Poin';
+
+            const resultCard = document.getElementById('quiz-result-card');
+            if (totalAnswered === hotsQuestions.length) {
+                resultCard.classList.remove('hidden');
+                document.getElementById('final-score').textContent = score + ' / 100';
+
+                const badgeIcon = document.getElementById('badge-icon');
+                const resultTitle = document.getElementById('result-title');
+                const finalGrade = document.getElementById('final-grade');
+
+                if (score >= 80) {
+                    badgeIcon.textContent = '🏆';
+                    resultTitle.textContent = 'Luar Biasa! Kamu Menguasai Materi Bioteknologi!';
+                    finalGrade.textContent = 'Sangat Kompeten';
+                    finalGrade.className = 'font-display font-bold text-lg text-emerald-300';
+                } else if (score >= 60) {
+                    badgeIcon.textContent = '🌟';
+                    resultTitle.textContent = 'Bagus! Pemahamanmu Sudah Cukup Baik!';
+                    finalGrade.textContent = 'Kompeten';
+                    finalGrade.className = 'font-display font-bold text-lg text-amber-300';
+                } else {
+                    badgeIcon.textContent = '📚';
+                    resultTitle.textContent = 'Tetap Semangat! Yuk Baca Lagi Materinya!';
+                    finalGrade.textContent = 'Perlu Pendalaman';
+                    finalGrade.className = 'font-display font-bold text-lg text-rose-300';
+                }
+            } else {
+                resultCard.classList.add('hidden');
+            }
+        }
+
+        function resetQuiz() {
+            userAnswers = {};
+            renderQuiz();
+            document.getElementById('kuis-hots').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Inisialisasi Kuis saat Halaman Dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+        });
+    </script>
+</body>
+</html>
